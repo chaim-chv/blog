@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>משכפל הטאבים - תוסף לדפדפן</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/built/fonts.css?v=ac34f1bcc3" />
+    
+    <script src="/assets/built/shabbos.js?v=ac34f1bcc3"></script>
+
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=ac34f1bcc3" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/rtl.css?v=ac34f1bcc3" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/prism.css?v=ac34f1bcc3" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <meta name="description" content="יצרתי לי תוסף קטן שמשכפל כרטיסיות בלחיצת כפתור, וכאן כתבתי את התהליך בצורה מפורטת - למי שרוצה לקרוא על הבסיס שבבסיס של תוספי דפדפנים &gt;&gt;&gt;" />
+    <link rel="icon" href="https://chaim-chv.github.io/blog/content/images/size/w256h256/2022/02/portait-rounded-256x256px.png" type="image/png" />
+    <link rel="canonical" href="https://chaim-chv.github.io/blog/tabs-duplicator/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="https://chaim-chv.github.io/blog/tabs-duplicator/amp/" />
+    
+    <meta property="og:site_name" content="CHV&#x27;s blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="משכפל הטאבים - תוסף לדפדפן" />
+    <meta property="og:description" content="יצרתי לי תוסף קטן שמשכפל כרטיסיות בלחיצת כפתור, וכאן כתבתי את התהליך בצורה מפורטת - למי שרוצה לקרוא על הבסיס שבבסיס של תוספי דפדפנים &gt;&gt;&gt;" />
+    <meta property="og:url" content="https://chaim-chv.github.io/blog/tabs-duplicator/" />
+    <meta property="og:image" content="https://res-4.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/tabs.png" />
+    <meta property="article:published_time" content="2020-11-29T03:20:27.000Z" />
+    <meta property="article:modified_time" content="2020-12-18T07:13:16.000Z" />
+    <meta property="article:tag" content="browser extensions" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="משכפל הטאבים - תוסף לדפדפן" />
+    <meta name="twitter:description" content="יצרתי לי תוסף קטן שמשכפל כרטיסיות בלחיצת כפתור, וכאן כתבתי את התהליך בצורה מפורטת - למי שרוצה לקרוא על הבסיס שבבסיס של תוספי דפדפנים &gt;&gt;&gt;" />
+    <meta name="twitter:url" content="https://chaim-chv.github.io/blog/tabs-duplicator/" />
+    <meta name="twitter:image" content="https://res-4.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/tabs.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="chv" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="browser extensions" />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="1092" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "CHV&#x27;s blog",
+        "url": "https://chaim-chv.github.io/blog/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://chaim-chv.github.io/blog/content/images/size/w256h256/2022/02/portait-rounded-256x256px.png"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "chv",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s=250&r=x&d=mp",
+            "width": 250,
+            "height": 250
+        },
+        "url": "https://chaim-chv.github.io/blog/author/chv/",
+        "sameAs": []
+    },
+    "headline": "משכפל הטאבים - תוסף לדפדפן",
+    "url": "https://chaim-chv.github.io/blog/tabs-duplicator/",
+    "datePublished": "2020-11-29T03:20:27.000Z",
+    "dateModified": "2020-12-18T07:13:16.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://res-4.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/tabs.png",
+        "width": 1920,
+        "height": 1092
+    },
+    "keywords": "browser extensions",
+    "description": "יצרתי לי תוסף קטן שמשכפל כרטיסיות בלחיצת כפתור, וכאן כתבתי את התהליך בצורה מפורטת - למי שרוצה לקרוא על הבסיס שבבסיס של תוספי דפדפנים &gt;&gt;&gt;",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://chaim-chv.github.io/blog/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.18" />
+    <link rel="alternate" type="application/rss+xml" title="CHV&#x27;s blog" href="https://chaim-chv.github.io/blog/rss/" />
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.14/umd/portal.min.js" data-ghost="https://chaim-chv.github.io/blog/" data-key="ff6c3adb86a27871ef669442ae" data-api="https://chaim-chv.github.io/blog/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="ff6c3adb86a27871ef669442ae" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://chaim-chv.github.io/blog/" crossorigin="anonymous"></script>
+    <script defer src="/public/cards.min.js?v=ac34f1bcc3"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=ac34f1bcc3">
+    <script defer src="/public/member-attribution.min.js?v=ac34f1bcc3"></script>
+    <!-- self-hosted umami analytics - privacy focused -->
+<script async defer data-website-id="975eb99f-8334-434c-b6b5-e8aa9e6e1003" src="https://umami.chv.ovh/umami.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
+
+    <meta name="google-site-verification" content="idgrb37VmvOFTqk3oRpi-LGYR05-7VNsWgeoc3ODs3Y" />
+    
+    <script src="https://onesignal.chv.ovh/sdks/OneSignalSDK.js"></script>
+    <script>
+        window.OneSignal = window.OneSignal || [];
+            OneSignal.push(function () {
+                OneSignal.init({
+                    appId: "74c8b239-c6ab-4d8a-a54e-c0ba8fe5b57e",
+                    notifyButton: {
+                        enable: false,
+                    },
+                    welcomeNotification: {
+                        "title": "ברוך הבא",
+                        "message": "נרשמת בהצלחה"
+                    }
+                });
+            });
+    </script>
+
+</head>
+<body class="post-template tag-browser-extensions">
+
+    <script>
+    function onManageWebPushSubscriptionButtonClicked(event) {
+        getSubscriptionState().then(function(state) {
+            if (state.isPushEnabled) {
+                /* Subscribed, opt them out */
+                OneSignal.setSubscription(false);
+            } else {
+                if (state.isOptedOut) {
+                    /* Opted out, opt them back in */
+                    OneSignal.setSubscription(true);
+                } else {
+                    /* Unsubscribed, subscribe them */
+                    OneSignal.registerForPushNotifications();
+                }
+            }
+        });
+    }
+
+    function updateMangeWebPushSubscriptionButton() {
+        var hideWhenSubscribed = false;
+        var subscribeText = "הירשם להתראות בדפדפן על פוסטים חדשים";
+        var unsubscribeText = "התנתק מההתראות";
+
+        getSubscriptionState().then(function(state) {
+            var buttonText = !state.isPushEnabled || state.isOptedOut ? subscribeText : unsubscribeText;
+
+            var top = document.querySelector(topbutton);
+            if (top === null) {
+                return;
+            }
+            var bottom = document.querySelector(bottombutton);
+            if (bottom === null) {
+                return;
+            }
+
+            top.textContent = buttonText;
+            bottom.textContent = buttonText;
+        });
+    }
+
+    function getSubscriptionState() {
+        return Promise.all([
+          OneSignal.isPushNotificationsEnabled(),
+          OneSignal.isOptedOut()
+        ]).then(function(result) {
+            var isPushEnabled = result[0];
+            var isOptedOut = result[1];
+
+            return {
+                isPushEnabled: isPushEnabled,
+                isOptedOut: isOptedOut
+            };
+        });
+    }
+
+    var OneSignal = OneSignal || [];
+    var topbutton = "#notify-top";
+    var bottombutton = "#notify-down"
+
+    /* This example assumes you've already initialized OneSignal */
+    OneSignal.push(function() {
+        // If we're on an unsupported browser, do nothing
+        if (!OneSignal.isPushNotificationsSupported()) {
+            return;
+        }
+        updateMangeWebPushSubscriptionButton(topbutton);
+        updateMangeWebPushSubscriptionButton(bottombutton);
+        OneSignal.on("subscriptionChange", function(isSubscribed) {
+            /* If the user's subscription state changes during the page's session, update the button text */
+            updateMangeWebPushSubscriptionButton(topbutton);
+            updateMangeWebPushSubscriptionButton(bottombutton);
+        });
+    });
+    updateMangeWebPushSubscriptionButton(topbutton);
+    updateMangeWebPushSubscriptionButton(bottombutton);
+
+    function track(description, type, url) { if (typeof umami !== "undefined") { umami.trackEvent(description, type, url || window.location.href ) } }
+    </script>
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header">
+    <div class="outer site-nav-main">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left-wrapper">
+        <div class="site-nav-left">
+                <a class="site-nav-logo" href="https://chaim-chv.github.io/blog">CHV&#x27;s blog</a>
+            <div class="site-nav-content">
+                    <ul class="nav">
+    <li class="nav-byt"><a href="https://chaim-chv.github.io/blog/">בית</a></li>
+    <li class="nav-tsvr-qshr"><a href="https://chaim-chv.github.io/blog/contact/">צור קשר</a></li>
+</ul>
+
+                    <span class="nav-post-title dash">משכפל הטאבים - תוסף לדפדפן</span>
+            </div>
+        </div>
+    </div>
+    <div class="site-nav-right">
+            <div class="social-links">
+            </div>
+
+            <div class="notif"><a href="#notify" onclick="onManageWebPushSubscriptionButtonClicked('click')" class="notify-button" id="notify-top">התראות דפדפן</a>
+            <span class="notify-button-tooltip">&zwnj; &zwnj; &zwnj; &zwnj; אפשר להירשם לעדכונים על ידי התראות דפדפן ('פושים' push) &zwnj; &zwnj; &zwnj; &zwnj;</span></div>
+            <a class="subscribe-button" href="#subscribe">עדכונים ב-<i class="fa fa-envelope" aria-hidden="true"></i> או <i class="fa fa-telegram" aria-hidden="true"></i></a>
+
+    </div>
+</nav>
+    </div>
+</div>    <link rel="stylesheet" type="text/css" href="/assets/built/scroll.css?v=ac34f1bcc3" />
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-browser-extensions ">
+
+            <header class="post-full-header">
+
+                <section class="post-full-tags">
+                    <a href="/tag/browser-extensions/">browser extensions</a>
+                </section>
+
+                <h1 class="post-full-title">משכפל הטאבים - תוסף לדפדפן</h1>
+
+                <p class="post-full-custom-excerpt">יצרתי לי תוסף קטן שמשכפל כרטיסיות בלחיצת כפתור, וכאן כתבתי את התהליך בצורה מפורטת - למי שרוצה לקרוא על הבסיס שבבסיס של תוספי דפדפנים &gt;&gt;&gt;</p>
+
+                <div class="post-full-byline">
+
+                    <section class="post-full-byline-content">
+
+                        <ul class="author-list">
+                            <li class="author-list-item">
+
+                                <div class="author-card">
+                                    <img class="author-profile-image" src="https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp" alt="chv" />
+                                    <div class="author-info">
+                                        <h2>chv</h2>
+                                        <p> קרא <a href="/author/chv/">עוד פוסטים</a> מהכותב הזה </p>
+                                    </div>
+                                </div>
+
+                                <a href="/author/chv/" class="author-avatar">
+                                    <img class="author-profile-image" src="https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp" alt="chv" />
+                                </a>
+
+                            </li>
+                        </ul>
+
+                        <section class="post-full-byline-meta">
+                            <h4 class="author-name"><a href="/author/chv/">chv</a></h4>
+                            <div class="byline-meta-content">
+                                <time class="byline-meta-date" datetime="2020-11-29">29 נוב׳ 2020</time>
+                                <span class="byline-reading-time"><span class="bull">&bull;</span> 1 min read</span>
+                            </div>
+                        </section>
+
+                    </section>
+
+
+                </div>
+            </header>
+
+            <figure class="post-full-image">
+                <img
+                    srcset="https://res-4.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/tabs.png 300w,
+                            https://res-4.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/tabs.png 600w,
+                            https://res-4.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/tabs.png 1000w,
+                            https://res-4.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/tabs.png 2000w"
+                    sizes="(max-width: 800px) 400px,
+                        (max-width: 1170px) 1170px,
+                            2000px"
+                    src="https://res-4.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/tabs.png"
+                    alt="משכפל הטאבים - תוסף לדפדפן"
+                />
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <p>שלום ושבוע טוב..</p><p>מי שמשתמש הרבה ב"שכפול כרטיסיות" (טאבים) בדפדפן - לא משנה איזה - בטח שם לב לעובדה המרגיזה שאין קיצור-דרך מובנה בדפדפן לבצע זאת.</p><p>כמי שעושה את זה הרבה פעמים, הציקה לי העובדה הזו ולכן הכנתי לעצמי <strong>תוסף</strong> שמבצע את זה בלחיצת כפתור, וגם נותן קיצור-דרך אם אתם מעוניינים.</p><p>התוסף ממש פשוט והנה אני מפרט אותו לפניכם.<br>נתחיל מהבסיס של תוספי דפדפנים בני דורינו מסביבת כרום-פיירפוקס, שחולקים (בערך) את אותם תקנים, אותם פיצ'רים למעט כמה הבדלים דקים.</p><p>כל תוסף דפדפן מתחיל בקובץ מניפסט manifest בפורמט נתונים - JSON. כל הפרמטרים שאמורים ליידע את הדפדפן על התוסף, כולל מה הוא עושה, אילו הרשאות הוא מבקש, איך קוראים לו ומטא-דטה כזה וכו' - הכל במניפסט. את כל הפרמטרים אפשר לראות <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json">כאן</a>, וללחוץ על כל אחד מהם כדי לראות את הפירוט.</p><p>הנה תוכן המניפסט של התוסף שלי:</p><pre><code class="language-json">{
+    "manifest_version": 2,
+    "name": "duplicator",
+    "version": "0.0.2",
+    "author": "chv - netfree user &amp; netfree fan",
+    "description": "click the button to duplicate current tab",
+    "icons": {
+      "24": "icons/dup24.png",
+      "48": "icons/dup48.png",
+      "96": "icons/dup96.png"
+    },
+
+    "developer": {
+      "name": "chv",
+      "url": "https://blog.chv.ovh"
+    },
+  
+    "background": {
+      "scripts": ["background.js"]
+    },
+  
+    "browser_action": {
+      "default_icon": "icons/dup24.png",
+      "default_title": "Duplicate active tab"
+    },
+
+    "commands": {
+      "_execute_browser_action": {
+          "suggested_key": {
+              "default": "Ctrl+Alt+D"
+          }
+      }
+    },
+  
+    "permissions": [
+      "activeTab",
+      "tabs"
+    ]
+}</code></pre><p>השורה הראשונה מבהירה לדפדפן להתייחס למניפסט כאל מניפסט מהגרסה החדשה (לא כ"כ חדשה).<br>לאחר מכן, שם, גרסה של התוסף, הסבר קצר עליו ושם היוצר.<br>אחרי זה מפורטים קבצי האייקונים של התוסף, בגדלים שונים. צריך לשים לב לא לשים אייקונים בגודל של יותר מ-128X128 פיקסלים, כי זה יגרום לכם לשגיאות ולכאב ראש.</p><p>אחרי זה יש קטע של שם המפתח, זה כדי ליצור את הלינק בפרטי התוסף, לאתר שאתם רוצים.</p><p>כאן מגיע הקטע שבו מצהירים על הקבצים שירוצו <strong>ברקע</strong>. ברקע - בתוסף - הכוונה לקבצים\סקריפטים שרצים בפני עצמם ולא קשורים לדף מסויים, ולא רצים בשום דף שהיוזר גולש בו. כלומר לא מכניסים שום תוכן לשום דף של היוזר.<br>ההיפך מקבצי הרקע זה קבצי התוכן - content_scripts - שהם בעצם קבצים שאתם קובעים שהתוסף יריץ אותם על טאבים ויכניס את הקוד לתוכם. למקטע זה מכניסים גם הגדרות של - על איזה כרטיסיות ירוץ וכו'.<br>כמו שאתם רואים - פשוט נוקבים בשם קובץ ה-javascript (JS) - מתיקיית התוסף.</p><p>בקטע הבא מבהירים לגבי הנושא של סמל התוסף, והפונקציה של לחיצה עליו. אמנם לא מסבירים כאן <strong>מה יקרה בלחיצה</strong>, (זה מבואר ב-JS עצמו) אבל נותנים לדפדפן מידע על האייקון, והכותרת (כשעומדים על הסמל, רואים טולטיפ כזה).</p><p>הקטע commands קשור לקיצורי דרך, מבהירים על מה יהיה אחראי קיצור הדרך (במקרה שלנו - הפעלה של ה-browser_action - לחיצה על התוסף) ומה הוא יהיה.</p><p>ובקטע permissions מבקשים הרשאות (שהמשתמש רואה כשהוא מתקין את התוסף) - כאן אני מבקש את ההרשאות למאגר המידע של הטאבים, וכן למידע על <strong>טאב נוכחי</strong> (אני לא בטוח אם אני צריך לבקש את שניהם, ככל הנראה בקשה של טאב נוכחי כבר פותרת למפרע את הבקשה של טאבים).</p><p>עד כאן המניפסט.<br>נעבור לקובץ ה-background.js:</p><pre><code class="language-javascript">chrome.browserAction.onClicked.addListener(function () {
+  chrome.tabs.query({ currentWindow: true, active: true }, (tabs) =&gt; {
+    browser.tabs.duplicate(tabs[0].id);
+  });
+});
+
+window.onload = function () {
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    chrome.browserAction.setIcon({
+      path: "icons-dark/dup24dark.png",
+    });
+  }
+};</code></pre><p>נתחיל עם הקטע הראשון. אנחנו מצמידים listener - ("מאזין") זה בעצם תהליך שרץ ומחכה לאירוע (event) מסוים. כאן אנחנו מוסיפים מאזין (addListener) לאירוע - browserAction.onClicked - כלומר כאשר ה-browserAction הזכור - נלחץ.</p><p>כאשר יקרה האירוע הנ"ל - תבוצע ה<strong>פונקציה </strong>(function) הבאה:</p><p>chrome.tabs.query - מבקשים מהדפדפן מידע על טאבים שבדפדפן, כרגע מסננים את התוצאות רק לטאבים שהם - current window - בחלון הנוכחי, ו-active - טאב פעיל, כלומר זה שהיוזר יושב עליו כרגע. את המידע הזה אנחנו משרשרים לאובייקט שנקרא לו tabs, האובייקט הזה הוא כרגע <strong>מערך</strong> של טאבים (המערך מכיל רק ערך אחד, כי סיננו רק את הטאבים <strong>הפעילים</strong>, וזה אפשרי רק לטאב אחד. אבל עדיין נצטרך להתייחס אל זה כמערך, ולנקוב במיקום של הערך בתוכו. כרגע [0], כי יש רק אחד).</p><p>מיד אנחנו מריצים על הערך הנ"ל את הפקודה browser.tabs.duplicate שמשכפלת את הטאבים שמבארים לה (לפי ID של הטאב).</p><p>עד כאן הפעולה הפשוטה של השכפול.</p><p>בקטע הבא זה פשוט כיוון שהסמל של התוסף הוא אייקון עם קווים שחורים, מה שלא נראה כמעט אם אתם משתמשים בערכת נושא כהה - הכנסתי פונקציה שבודקת את ערכת הנושא הנוכחית של הדפדפן, מזהה אם היא כהה ואם מתגלה שכך - מחליפה את אייקון התוסף באייקון בהיר.</p><p>זהו!</p><p>זה היה תוסף ממש בסיסי, ואני משאיר כאן למטה מ"מ לכל הפונקציות שהוזכרו בו.</p><p>אפשר למצוא את התוסף בגלריית התוספים של פיירפוקס - <a href="https://addons.mozilla.org/firefox/addon/one-click-duplicator/">כאן</a>, וגם בגיטהב <a href="https://github.com/chaim-chv/duplicator">כאן</a> אפשר להעיר הערות, כמיטב המסורת.<br>בתוצאה התיקייה של התוסף מורכבת ככה:</p><figure class="kg-card kg-image-card"><img src="https://res-1.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/folder..png" class="kg-image" alt loading="lazy" width="241" height="255"></figure><p>תוספי דפדפן זה תחום ממש נחמד, כי זה באמת ממש קל ופשוט גם למתחילים (כמוני) וניתן ללמוד מהר.<br>בעזרת ה' אכתוב כאן על עוד תוסף שכתבתי לאחרונה - קצת יותר מפותל מזה.</p><p>תודה שקראתם! מקווה שנהניתם. יש כאן עוד פוסטים.. תסתכלו למטה 👇 </p><hr><p><strong>מ"מ:</strong></p><ul><li>מה זה בעצם, מלמעלה - <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JSON</a></li><li>הפונקציה <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/query">tabs.query</a></li><li>הקריאה <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia">window.matchMedia</a> והשימוש שלי לזהות dark mode - <a href="https://ourcodeworld.com/articles/read/1114/how-to-detect-if-the-user-prefers-a-light-or-dark-color-schema-in-the-browser-with-javascript-and-css">דוגמא</a></li></ul><p>צריך לשים לב שבפיתוח תוספים <strong>לכרום</strong> - המילה browser צריכה להיות מוחלפת ב-chrome. מאידך פיירפוקס יזרום בין אם תכתבו browser ובין אם תכתבו chrome. דפדפן נחמד, לא?</p>
+                    <hr class="tg-delete">
+                    <p class="tg-delete">
+                        <strong>אם יש לכם איזו שאלה ❔✨ או כל תגובה 💬, הארה 💡 והערה ❕ שהיא על הפוסט - אשמח מאוד! אם תכתבו אותה בהערות כאן למטה</strong>
+                        <br>
+                        פשוט להתחבר עם חשבון גיטהב ולהגיב 🎉
+                    </p>
+                    
+                </div>
+
+                <script src="https://utteranc.es/client.js" 
+                  repo="chaim-chv/blog-comments" 
+                  issue-term="og:title" 
+                  label="✨💬✨comment"
+                  theme="github-dark" 
+                  crossorigin="anonymous" async>
+                </script>
+
+            </section>
+
+
+            <section class="subscribe-form">
+
+    <h3 class="subscribe-form-title" style="border-bottom: 3px solid green;">הירשם ל-CHV&#x27;s blog</h3>
+    <p class="subscribe-form-description">
+        <strong style="color: whitesmoke;">🔔 התראות דפדפן 🔔</strong>
+        <br>
+        אפשר לקבל התראות פוש מהאתר על כל פוסט חדש!
+        <br>
+        לחץ על הכפתור למעלה או בתחתית העמוד כדי להתחבר
+        </p>
+        <br><div style="border-top: 3px solid green"></div><br>
+        <p class="subscribe-form-description">
+        הרשמה לעדכונים במייל על פוסטים חדשים:
+        <input style="margin: 10px 0 10px 0;" type="email" class="subscribe-email" id="mailform-down-email" placeholder="myemail@gmail.com" autocomplete="on">
+        <input style="margin: 10px 0 10px 0;" type="name" class="subscribe-email" id="mailform-down-name" placeholder="שם (למען הסדר הטוב)" autocomplete="on">
+        <button class="button primary" type="button" onclick="subscribe()">
+            <span class="button-content">הרשמה</span>
+            <span class="button-loader">
+                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                    y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                    <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                    <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                C22.32,8.481,24.301,9.057,26.013,10.047z">
+                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20"
+                            dur="0.5s" repeatCount="indefinite" />
+                    </path>
+                </svg>
+            </span>
+        </button><br>
+        <span id="sub-results"></span>
+        </p><br><div style="border-top: 3px solid green"></div><br>
+        <p class="subscribe-form-description">
+        או שתירשמו ל<strong>ערוץ הטלגרם</strong> שגם בו אני אעלה בעז"ה הודעה בכל פוסט חדש כאן<br>
+        <strong><a href="https://t.me/chvsblog" target="_blank">לחצו כאן כדי לעבור לערוץ בטלגרם</a></strong>
+    </p>
+
+    <script src="/assets/built/subscribe.js?v=ac34f1bcc3"></script>
+
+</section>
+
+        </article>
+
+    </div>
+</main>
+								
+	<div class="progress-wrap">
+		<svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+			<path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+		</svg>
+	</div>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card">
+                    <header class="read-next-card-header">
+                        <h3><span>עוד ב-</span><a href="/tag/browser-extensions/">browser extensions</a></h3>
+                    </header>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li>
+                                <h4><a href="/virustotal-addon/">תוסף לדפדפן: בודק דומיינים ב-virustotal</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2020-12-21">21 דצמ׳ 2020</time> –
+                                        2 min read</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="/tag/browser-extensions/">פוסט 1
+                            →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-javascript ">
+
+    <a class="post-card-image-link" href="/js-listener/">
+        <img class="post-card-image"
+            srcset="https://res-5.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/listen.png 300w,
+                    https://res-5.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/listen.png 600w,
+                    https://res-5.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/listen.png 1000w,
+                    https://res-5.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/listen.png 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            loading="lazy"
+            src="https://res-5.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/listen.png"
+            alt="מושגים בסיסיים ב-js: מאזין listener"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/js-listener/">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">javascript</div>
+                <h2 class="post-card-title">מושגים בסיסיים ב-js: מאזין listener</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>'מאזין' זה אלמנט מסוים בקוד שמחכה לאירוע שהוגדר לו ואז מריץ את הפקודה.
+הנה הסבר קצר על זה ואיך זה עובד >>></p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        chv
+                    </div>
+            
+                    <a href="/author/chv/" class="static-avatar">
+                        <img class="author-profile-image" src="https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp" alt="chv" />
+                    </a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="/author/chv/">chv</a></span>
+                <span class="post-card-byline-date"><time datetime="2020-12-18">18 דצמ׳ 2020</time> <span class="bull">&bull;</span> דקה אחת קריאה</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+
+                <article class="post-card post tag-google-scripts tag-github ">
+
+    <a class="post-card-image-link" href="/github-actions-deploy/">
+        <img class="post-card-image"
+            srcset="https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/github-actions.jpg 300w,
+                    https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/github-actions.jpg 600w,
+                    https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/github-actions.jpg 1000w,
+                    https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/github-actions.jpg 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            loading="lazy"
+            src="https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/github-actions.jpg"
+            alt="הפעלה ידנית של Github actions מתוך גוגל סקריפט"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/github-actions-deploy/">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">google scripts</div>
+                <h2 class="post-card-title">הפעלה ידנית של Github actions מתוך גוגל סקריפט</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>כהמשך לפוסט על ניטור פעילות אתרים באמצעות Google scripts, הרחבה לשילוב עם פלטפורמה נוספת לצורך תיקון תקלות אוטומטי >>></p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        chv
+                    </div>
+            
+                    <a href="/author/chv/" class="static-avatar">
+                        <img class="author-profile-image" src="https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp" alt="chv" />
+                    </a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="/author/chv/">chv</a></span>
+                <span class="post-card-byline-date"><time datetime="2020-11-03">3 נוב׳ 2020</time> <span class="bull">&bull;</span> דקות קריאה 2</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://chaim-chv.github.io/blog">CHV&#x27;s blog</a> &copy; 2022</section>
+                <nav class="site-footer-nav">
+                    <a href="https://chaim-chv.github.io/blog">פוסטים אחרונים</a>
+                    
+                    <a href="#notify" onclick="onManageWebPushSubscriptionButtonClicked('click')" id="notify-down">התראות דפדפן</a>
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="subscribe" class="subscribe-overlay">
+        <a class="subscribe-close-overlay" href="#"></a>
+        <a class="subscribe-close-button" href="#"></a>
+        <div class="subscribe-overlay-content">
+            <div class="subscribe-form">
+                <h1 class="subscribe-overlay-title">הירשם ל-CHV&#x27;s blog</h1>
+                <p class="subscribe-overlay-description">
+        הרשמה לעדכונים במייל על פוסטים חדשים:
+        <input style="margin: 10px 0 10px 0;" type="email" class="subscribe-email subscribe-up-email" id="mailform-up-email" placeholder="myemail@gmail.com" autocomplete="on">
+        <input style="margin: 10px 0 10px 0;" type="name" class="subscribe-email subscribe-up-email" id="mailform-up-name" placeholder="שם (למען הסדר הטוב)" autocomplete="on">
+        <button class="button primary" type="button" onclick="subscribeup()">
+            <span class="button-content">הרשמה</span>
+            <span class="button-loader-up">
+                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                    y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                    <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                    <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                C22.32,8.481,24.301,9.057,26.013,10.047z">
+                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20"
+                            dur="0.5s" repeatCount="indefinite" />
+                    </path>
+                </svg>
+            </span>
+        </button><br>
+        <span id="sub-results-up"></span><br>
+        <br>או שתירשמו ל<strong>ערוץ הטלגרם</strong> שגם בו אני אעלה בעז"ה הודעה בכל פוסט חדש כאן<br><strong><a href="https://t.me/chvsblog" target="_blank">לחצו כאן כדי לעבור לערוץ בטלגרם</a></strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/built/subscribe-overlay.js?v=ac34f1bcc3"></script>
+
+    <script src="/assets/built/jquery+members+prism.js?v=ac34f1bcc3"></script>
+
+    <script src="/assets/built/casper.js?v=ac34f1bcc3"></script>
+
+        <script src="/assets/built/postscroll.js?v=ac34f1bcc3"></script>
+
+
+    <style>
+::selection {
+  color: black
+}
+</style>
+
+</body>
+</html>

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>תעשו לי טובה ותעבדו עם Counter</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/built/fonts.css?v=ac34f1bcc3" />
+    
+    <script src="/assets/built/shabbos.js?v=ac34f1bcc3"></script>
+
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=ac34f1bcc3" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/rtl.css?v=ac34f1bcc3" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/prism.css?v=ac34f1bcc3" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <meta name="description" content="לאחרונה יצא לי לעבור על הרבה קוד, עם הרבה קטעים שמנתחים סטטיסטיקות (אולי לא נכון לקרוא לזה סטטיסטיקות) ממקורות מידע מסוימים, וכמובן איך לא - מציגי..." />
+    <link rel="icon" href="https://chaim-chv.github.io/blog/content/images/size/w256h256/2022/02/portait-rounded-256x256px.png" type="image/png" />
+    <link rel="canonical" href="https://chaim-chv.github.io/blog/python-counter/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="https://chaim-chv.github.io/blog/python-counter/amp/" />
+    
+    <meta property="og:site_name" content="CHV&#x27;s blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="תעשו לי טובה ותעבדו עם Counter" />
+    <meta property="og:description" content="קצת על שימוש בתת מחלקה בספרייה collections של פייתון, לספירת מופעים מהירה של ערכים בתוך מערך.
+בתמונה: פאי 🍰" />
+    <meta property="og:url" content="https://chaim-chv.github.io/blog/python-counter/" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1554298128-c916518a4b34?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDN8fHBpZXxlbnwwfHx8fDE2NTEwMjA2MDQ&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;2000" />
+    <meta property="article:published_time" content="2022-04-27T06:01:02.000Z" />
+    <meta property="article:modified_time" content="2022-04-27T18:15:18.000Z" />
+    <meta property="article:tag" content="python" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="תעשו לי טובה ותעבדו עם Counter" />
+    <meta name="twitter:description" content="קצת על שימוש בתת מחלקה בספרייה collections של פייתון, לספירת מופעים מהירה של ערכים בתוך מערך.
+בתמונה: פאי 🍰" />
+    <meta name="twitter:url" content="https://chaim-chv.github.io/blog/python-counter/" />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1554298128-c916518a4b34?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDN8fHBpZXxlbnwwfHx8fDE2NTEwMjA2MDQ&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;2000" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="chv" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="python" />
+    <meta property="og:image:width" content="2000" />
+    <meta property="og:image:height" content="1578" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "CHV&#x27;s blog",
+        "url": "https://chaim-chv.github.io/blog/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://chaim-chv.github.io/blog/content/images/size/w256h256/2022/02/portait-rounded-256x256px.png"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "chv",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s=250&r=x&d=mp",
+            "width": 250,
+            "height": 250
+        },
+        "url": "https://chaim-chv.github.io/blog/author/chv/",
+        "sameAs": []
+    },
+    "headline": "תעשו לי טובה ותעבדו עם Counter",
+    "url": "https://chaim-chv.github.io/blog/python-counter/",
+    "datePublished": "2022-04-27T06:01:02.000Z",
+    "dateModified": "2022-04-27T18:15:18.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1554298128-c916518a4b34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDN8fHBpZXxlbnwwfHx8fDE2NTEwMjA2MDQ&ixlib=rb-1.2.1&q=80&w=2000",
+        "width": 2000,
+        "height": 1578
+    },
+    "keywords": "python",
+    "description": "קצת על שימוש בתת מחלקה בספרייה collections של פייתון, לספירת מופעים מהירה של ערכים בתוך מערך.\nבתמונה: פאי 🍰",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://chaim-chv.github.io/blog/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.18" />
+    <link rel="alternate" type="application/rss+xml" title="CHV&#x27;s blog" href="https://chaim-chv.github.io/blog/rss/" />
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.14/umd/portal.min.js" data-ghost="https://chaim-chv.github.io/blog/" data-key="ff6c3adb86a27871ef669442ae" data-api="https://chaim-chv.github.io/blog/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="ff6c3adb86a27871ef669442ae" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://chaim-chv.github.io/blog/" crossorigin="anonymous"></script>
+    <script defer src="/public/cards.min.js?v=ac34f1bcc3"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=ac34f1bcc3">
+    <script defer src="/public/member-attribution.min.js?v=ac34f1bcc3"></script>
+    <!-- self-hosted umami analytics - privacy focused -->
+<script async defer data-website-id="975eb99f-8334-434c-b6b5-e8aa9e6e1003" src="https://umami.chv.ovh/umami.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
+
+    <meta name="google-site-verification" content="idgrb37VmvOFTqk3oRpi-LGYR05-7VNsWgeoc3ODs3Y" />
+    
+    <script src="https://onesignal.chv.ovh/sdks/OneSignalSDK.js"></script>
+    <script>
+        window.OneSignal = window.OneSignal || [];
+            OneSignal.push(function () {
+                OneSignal.init({
+                    appId: "74c8b239-c6ab-4d8a-a54e-c0ba8fe5b57e",
+                    notifyButton: {
+                        enable: false,
+                    },
+                    welcomeNotification: {
+                        "title": "ברוך הבא",
+                        "message": "נרשמת בהצלחה"
+                    }
+                });
+            });
+    </script>
+
+</head>
+<body class="post-template tag-python">
+
+    <script>
+    function onManageWebPushSubscriptionButtonClicked(event) {
+        getSubscriptionState().then(function(state) {
+            if (state.isPushEnabled) {
+                /* Subscribed, opt them out */
+                OneSignal.setSubscription(false);
+            } else {
+                if (state.isOptedOut) {
+                    /* Opted out, opt them back in */
+                    OneSignal.setSubscription(true);
+                } else {
+                    /* Unsubscribed, subscribe them */
+                    OneSignal.registerForPushNotifications();
+                }
+            }
+        });
+    }
+
+    function updateMangeWebPushSubscriptionButton() {
+        var hideWhenSubscribed = false;
+        var subscribeText = "הירשם להתראות בדפדפן על פוסטים חדשים";
+        var unsubscribeText = "התנתק מההתראות";
+
+        getSubscriptionState().then(function(state) {
+            var buttonText = !state.isPushEnabled || state.isOptedOut ? subscribeText : unsubscribeText;
+
+            var top = document.querySelector(topbutton);
+            if (top === null) {
+                return;
+            }
+            var bottom = document.querySelector(bottombutton);
+            if (bottom === null) {
+                return;
+            }
+
+            top.textContent = buttonText;
+            bottom.textContent = buttonText;
+        });
+    }
+
+    function getSubscriptionState() {
+        return Promise.all([
+          OneSignal.isPushNotificationsEnabled(),
+          OneSignal.isOptedOut()
+        ]).then(function(result) {
+            var isPushEnabled = result[0];
+            var isOptedOut = result[1];
+
+            return {
+                isPushEnabled: isPushEnabled,
+                isOptedOut: isOptedOut
+            };
+        });
+    }
+
+    var OneSignal = OneSignal || [];
+    var topbutton = "#notify-top";
+    var bottombutton = "#notify-down"
+
+    /* This example assumes you've already initialized OneSignal */
+    OneSignal.push(function() {
+        // If we're on an unsupported browser, do nothing
+        if (!OneSignal.isPushNotificationsSupported()) {
+            return;
+        }
+        updateMangeWebPushSubscriptionButton(topbutton);
+        updateMangeWebPushSubscriptionButton(bottombutton);
+        OneSignal.on("subscriptionChange", function(isSubscribed) {
+            /* If the user's subscription state changes during the page's session, update the button text */
+            updateMangeWebPushSubscriptionButton(topbutton);
+            updateMangeWebPushSubscriptionButton(bottombutton);
+        });
+    });
+    updateMangeWebPushSubscriptionButton(topbutton);
+    updateMangeWebPushSubscriptionButton(bottombutton);
+
+    function track(description, type, url) { if (typeof umami !== "undefined") { umami.trackEvent(description, type, url || window.location.href ) } }
+    </script>
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header">
+    <div class="outer site-nav-main">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left-wrapper">
+        <div class="site-nav-left">
+                <a class="site-nav-logo" href="https://chaim-chv.github.io/blog">CHV&#x27;s blog</a>
+            <div class="site-nav-content">
+                    <ul class="nav">
+    <li class="nav-byt"><a href="https://chaim-chv.github.io/blog/">בית</a></li>
+    <li class="nav-tsvr-qshr"><a href="https://chaim-chv.github.io/blog/contact/">צור קשר</a></li>
+</ul>
+
+                    <span class="nav-post-title dash">תעשו לי טובה ותעבדו עם Counter</span>
+            </div>
+        </div>
+    </div>
+    <div class="site-nav-right">
+            <div class="social-links">
+            </div>
+
+            <div class="notif"><a href="#notify" onclick="onManageWebPushSubscriptionButtonClicked('click')" class="notify-button" id="notify-top">התראות דפדפן</a>
+            <span class="notify-button-tooltip">&zwnj; &zwnj; &zwnj; &zwnj; אפשר להירשם לעדכונים על ידי התראות דפדפן ('פושים' push) &zwnj; &zwnj; &zwnj; &zwnj;</span></div>
+            <a class="subscribe-button" href="#subscribe">עדכונים ב-<i class="fa fa-envelope" aria-hidden="true"></i> או <i class="fa fa-telegram" aria-hidden="true"></i></a>
+
+    </div>
+</nav>
+    </div>
+</div>    <link rel="stylesheet" type="text/css" href="/assets/built/scroll.css?v=ac34f1bcc3" />
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-python ">
+
+            <header class="post-full-header">
+
+                <section class="post-full-tags">
+                    <a href="/tag/python/">python</a>
+                </section>
+
+                <h1 class="post-full-title">תעשו לי טובה ותעבדו עם Counter</h1>
+
+                <p class="post-full-custom-excerpt">קצת על שימוש בתת מחלקה בספרייה collections של פייתון, לספירת מופעים מהירה של ערכים בתוך מערך.
+בתמונה: פאי 🍰</p>
+
+                <div class="post-full-byline">
+
+                    <section class="post-full-byline-content">
+
+                        <ul class="author-list">
+                            <li class="author-list-item">
+
+                                <div class="author-card">
+                                    <img class="author-profile-image" src="https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp" alt="chv" />
+                                    <div class="author-info">
+                                        <h2>chv</h2>
+                                        <p> קרא <a href="/author/chv/">עוד פוסטים</a> מהכותב הזה </p>
+                                    </div>
+                                </div>
+
+                                <a href="/author/chv/" class="author-avatar">
+                                    <img class="author-profile-image" src="https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp" alt="chv" />
+                                </a>
+
+                            </li>
+                        </ul>
+
+                        <section class="post-full-byline-meta">
+                            <h4 class="author-name"><a href="/author/chv/">chv</a></h4>
+                            <div class="byline-meta-content">
+                                <time class="byline-meta-date" datetime="2022-04-27">27 אפר׳ 2022</time>
+                                <span class="byline-reading-time"><span class="bull">&bull;</span> 1 min read</span>
+                            </div>
+                        </section>
+
+                    </section>
+
+
+                </div>
+            </header>
+
+            <figure class="post-full-image">
+                <img
+                    srcset="https://images.unsplash.com/photo-1554298128-c916518a4b34?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDN8fHBpZXxlbnwwfHx8fDE2NTEwMjA2MDQ&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;300 300w,
+                            https://images.unsplash.com/photo-1554298128-c916518a4b34?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDN8fHBpZXxlbnwwfHx8fDE2NTEwMjA2MDQ&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;600 600w,
+                            https://images.unsplash.com/photo-1554298128-c916518a4b34?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDN8fHBpZXxlbnwwfHx8fDE2NTEwMjA2MDQ&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;1000 1000w,
+                            https://images.unsplash.com/photo-1554298128-c916518a4b34?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDN8fHBpZXxlbnwwfHx8fDE2NTEwMjA2MDQ&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;2000 2000w"
+                    sizes="(max-width: 800px) 400px,
+                        (max-width: 1170px) 1170px,
+                            2000px"
+                    src="https://images.unsplash.com/photo-1554298128-c916518a4b34?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDN8fHBpZXxlbnwwfHx8fDE2NTEwMjA2MDQ&amp;ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;w&#x3D;2000"
+                    alt="תעשו לי טובה ותעבדו עם Counter"
+                />
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <p>לאחרונה יצא לי לעבור על הרבה קוד, עם הרבה קטעים שמנתחים סטטיסטיקות ממקורות מידע מסוימים, וכמובן איך לא - מציגים את המידע בדשבורדים עם גרפים ותרשימים ו'פאי' (תרשים עוגה).</p><p>ניקח כדוגמא אם יש לי מנגנון אנליטיקס, שאוסף מידע על המקורות מהם הגיעו גולשים לאתר. כשאני יתשאל את הדטבייס אני יקבל רשימת ביקורים באתר, ויצור ממנה מערך של המקורות. כזה, לדוגמא:</p><pre><code class="language-Python">['facebook', 'facebook', 'google', 'twitter', 'google', 'facebook']</code></pre><p>הצורך הוא ליצור רשימה של כל הערכים שמופיעים במערך, וספירה של כמות ההופעות של כל אחד מהם במערך. שיהיה תוצאה כזו:</p><pre><code class="language-Python">[('facebook': 3), ('google': 2), ('twitter': 1)]</code></pre><p>בקוד שראיתי, זה מומש בערך כך:</p><pre><code class="language-Python">sources = ['facebook', 'facebook', 'google', 'twitter', 'google', 'facebook']
+sources_sum = {}
+for source in sources:
+    if source not in sources_sum:
+        sources_sum[source] = 1
+    else:
+        sources_sum[source] += 1
+results = [(source, sources_sum[source]) for source in sources_sum]
+print(results)  # [('facebook', 3), ('google', 2), ('twitter', 1)]</code></pre><h2 id="%D7%9E%D7%94-%D7%96%D7%94-counter">מה זה Counter?</h2><p>בספרייה <code>collections</code> שהיא ספרייה מובנית בפייתון (3+) נמצא את <code><a href="https://docs.python.org/3/library/collections.html#counter-objects">Counter</a></code>. התיאור בתיעוד הוא:</p><blockquote>A <a href="https://docs.python.org/3/library/collections.html#collections.Counter"><code>Counter</code></a> is a <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a> subclass for counting hashable objects. It is a collection where elements are stored as dictionary keys and their counts are stored as dictionary values.  Counts are allowed to be any integer value including zero or negative counts.  The <a href="https://docs.python.org/3/library/collections.html#collections.Counter"><code>Counter</code></a>class is similar to bags or multisets in other languages.</blockquote><p>בפעולה הבסיסית שלו הוא פשוט עושה את זה: מוציא ממערך את מספר המופעים של כל ערך שבתוכו.<br>עם <code>Counter</code> ניתן ליצור את התוצאה דלעיל בשורה אחת פשוטה (ולדעתי מאוד קריאה):</p><pre><code class="language-Python">from collections import Counter
+
+sources = ['facebook', 'facebook', 'google', 'twitter', 'google', 'facebook']
+results = dict(Counter(sources)).items()
+print(results)  # dict_items([('facebook', 2), ('google', 2), ('twitter', 1)])</code></pre><p><code>Counter</code> מחזיר אובייקט <code>Counter</code> שממנו ניתן ליצור <code>dict</code> - ממנו ניתן לחלץ מערך של <code>tuples</code> - כל המפתחות והערכים שלהם עם ידי המתודה <code>()items</code>.</p><p>אני בטוח שמבחינת ביצועים יהיו יתרונות לטובת ה-<code>Counter</code> וזו עוד סיבה להמשתמש בו כמובן, אבל מה שתפס אותי זו הקריאות והקוד הקצר.<br>ריפקטורינג של קטעים כאלה, יכול לקצר קטעי קוד ארוכים ומפרכים, ולתת למפתחים חדשים שעובדים על הקוד להבין יותר מה הם עושים.</p><p>יש ל-<code>Counter</code> עוד הרבה יתרונות ומתודות מעניינות (כמו האופציה להשוואה בין שני <code>Counters</code> - שזה משווה את התוכן שלהם, האופציה להוספה של <code>Counter</code> ל-<code>Counter</code> כך שבעצם נוצר <code>Counter</code> חדש עם שילוב של הערכים משני ה-<code>Counters</code>, המתודה <code>()most_common</code> שמביאה במהירות את הערך הגבוה ביותר ב-<code>Counter</code> ועוד) את הכול אפשר ללמוד מהתיעוד הברור, אני מצרף בסוף גם כמה בלוג פוסטים טובים שקראתי עליו.<br>אז מי כאן שכותב פייתון, ויכתוב בזכותי עוד <code>Counter</code> בעולם - והיה זה שכרי.</p><p>יום טוב וקוד טוב 😉</p><hr><p>כמה מראי מקומות בסיסיים ל-<code>Counter</code>:</p><ul><li>דבר ראשון כמובן <a href="https://docs.python.org/3/library/collections.html#counter-objects">התיעוד הרשמי</a></li><li><a href="https://realpython.com/python-counter/">בלוג / מדריך מצוין ב-realpython</a></li></ul>
+                    <hr class="tg-delete">
+                    <p class="tg-delete">
+                        <strong>אם יש לכם איזו שאלה ❔✨ או כל תגובה 💬, הארה 💡 והערה ❕ שהיא על הפוסט - אשמח מאוד! אם תכתבו אותה בהערות כאן למטה</strong>
+                        <br>
+                        פשוט להתחבר עם חשבון גיטהב ולהגיב 🎉
+                    </p>
+                    
+                </div>
+
+                <script src="https://utteranc.es/client.js" 
+                  repo="chaim-chv/blog-comments" 
+                  issue-term="og:title" 
+                  label="✨💬✨comment"
+                  theme="github-dark" 
+                  crossorigin="anonymous" async>
+                </script>
+
+            </section>
+
+
+            <section class="subscribe-form">
+
+    <h3 class="subscribe-form-title" style="border-bottom: 3px solid green;">הירשם ל-CHV&#x27;s blog</h3>
+    <p class="subscribe-form-description">
+        <strong style="color: whitesmoke;">🔔 התראות דפדפן 🔔</strong>
+        <br>
+        אפשר לקבל התראות פוש מהאתר על כל פוסט חדש!
+        <br>
+        לחץ על הכפתור למעלה או בתחתית העמוד כדי להתחבר
+        </p>
+        <br><div style="border-top: 3px solid green"></div><br>
+        <p class="subscribe-form-description">
+        הרשמה לעדכונים במייל על פוסטים חדשים:
+        <input style="margin: 10px 0 10px 0;" type="email" class="subscribe-email" id="mailform-down-email" placeholder="myemail@gmail.com" autocomplete="on">
+        <input style="margin: 10px 0 10px 0;" type="name" class="subscribe-email" id="mailform-down-name" placeholder="שם (למען הסדר הטוב)" autocomplete="on">
+        <button class="button primary" type="button" onclick="subscribe()">
+            <span class="button-content">הרשמה</span>
+            <span class="button-loader">
+                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                    y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                    <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                    <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                C22.32,8.481,24.301,9.057,26.013,10.047z">
+                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20"
+                            dur="0.5s" repeatCount="indefinite" />
+                    </path>
+                </svg>
+            </span>
+        </button><br>
+        <span id="sub-results"></span>
+        </p><br><div style="border-top: 3px solid green"></div><br>
+        <p class="subscribe-form-description">
+        או שתירשמו ל<strong>ערוץ הטלגרם</strong> שגם בו אני אעלה בעז"ה הודעה בכל פוסט חדש כאן<br>
+        <strong><a href="https://t.me/chvsblog" target="_blank">לחצו כאן כדי לעבור לערוץ בטלגרם</a></strong>
+    </p>
+
+    <script src="/assets/built/subscribe.js?v=ac34f1bcc3"></script>
+
+</section>
+
+        </article>
+
+    </div>
+</main>
+								
+	<div class="progress-wrap">
+		<svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+			<path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+		</svg>
+	</div>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+
+
+                <article class="post-card post tag-javascript ">
+
+    <a class="post-card-image-link" href="/js-scopes/">
+        <img class="post-card-image"
+            srcset="https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/scopes.png 300w,
+                    https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/scopes.png 600w,
+                    https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/scopes.png 1000w,
+                    https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/scopes.png 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            loading="lazy"
+            src="https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/scopes.png"
+            alt="מושגים בסיסיים ב-JS: סְקוֹפּ Scope"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/js-scopes/">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">javascript</div>
+                <h2 class="post-card-title">מושגים בסיסיים ב-JS: סְקוֹפּ Scope</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>הנושא של סקופים בג'אווהסקריפט הוא בסיסי ועם השלכות על כל שלב ברמת הכתיבה בה. הפוסט הזה לא מכסה את הנושא בכלל, אבל יכול לתת כיוון טוב להתחלה >>></p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        chv
+                    </div>
+            
+                    <a href="/author/chv/" class="static-avatar">
+                        <img class="author-profile-image" src="https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp" alt="chv" />
+                    </a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="/author/chv/">chv</a></span>
+                <span class="post-card-byline-date"><time datetime="2021-03-30">30 מרץ 2021</time> <span class="bull">&bull;</span> דקה אחת קריאה</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://chaim-chv.github.io/blog">CHV&#x27;s blog</a> &copy; 2022</section>
+                <nav class="site-footer-nav">
+                    <a href="https://chaim-chv.github.io/blog">פוסטים אחרונים</a>
+                    
+                    <a href="#notify" onclick="onManageWebPushSubscriptionButtonClicked('click')" id="notify-down">התראות דפדפן</a>
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="subscribe" class="subscribe-overlay">
+        <a class="subscribe-close-overlay" href="#"></a>
+        <a class="subscribe-close-button" href="#"></a>
+        <div class="subscribe-overlay-content">
+            <div class="subscribe-form">
+                <h1 class="subscribe-overlay-title">הירשם ל-CHV&#x27;s blog</h1>
+                <p class="subscribe-overlay-description">
+        הרשמה לעדכונים במייל על פוסטים חדשים:
+        <input style="margin: 10px 0 10px 0;" type="email" class="subscribe-email subscribe-up-email" id="mailform-up-email" placeholder="myemail@gmail.com" autocomplete="on">
+        <input style="margin: 10px 0 10px 0;" type="name" class="subscribe-email subscribe-up-email" id="mailform-up-name" placeholder="שם (למען הסדר הטוב)" autocomplete="on">
+        <button class="button primary" type="button" onclick="subscribeup()">
+            <span class="button-content">הרשמה</span>
+            <span class="button-loader-up">
+                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                    y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                    <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                    <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                C22.32,8.481,24.301,9.057,26.013,10.047z">
+                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20"
+                            dur="0.5s" repeatCount="indefinite" />
+                    </path>
+                </svg>
+            </span>
+        </button><br>
+        <span id="sub-results-up"></span><br>
+        <br>או שתירשמו ל<strong>ערוץ הטלגרם</strong> שגם בו אני אעלה בעז"ה הודעה בכל פוסט חדש כאן<br><strong><a href="https://t.me/chvsblog" target="_blank">לחצו כאן כדי לעבור לערוץ בטלגרם</a></strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/built/subscribe-overlay.js?v=ac34f1bcc3"></script>
+
+    <script src="/assets/built/jquery+members+prism.js?v=ac34f1bcc3"></script>
+
+    <script src="/assets/built/casper.js?v=ac34f1bcc3"></script>
+
+        <script src="/assets/built/postscroll.js?v=ac34f1bcc3"></script>
+
+
+    <style>
+::selection {
+  color: black
+}
+</style>
+
+</body>
+</html>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Monitoring - ניטור פעילות באינטרנט</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/built/fonts.css?v=ac34f1bcc3" />
+    
+    <script src="/assets/built/shabbos.js?v=ac34f1bcc3"></script>
+
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=ac34f1bcc3" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/rtl.css?v=ac34f1bcc3" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/prism.css?v=ac34f1bcc3" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <meta name="description" content="הנה דוגמא קטנה לשימוש (לא ייעודי.. כנראה) בפלטפורמת גוגל סקריפט - במקום להחזיק שרת ולשלוח ממנו בקשות, נתתי לגוגל לעשות את זה במקומי &gt;&gt;&gt;" />
+    <link rel="icon" href="https://chaim-chv.github.io/blog/content/images/size/w256h256/2022/02/portait-rounded-256x256px.png" type="image/png" />
+    <link rel="canonical" href="https://chaim-chv.github.io/blog/site-monitoring/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="https://chaim-chv.github.io/blog/site-monitoring/amp/" />
+    
+    <meta property="og:site_name" content="CHV&#x27;s blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Monitoring - ניטור פעילות באינטרנט" />
+    <meta property="og:description" content="הנה דוגמא קטנה לשימוש (לא ייעודי.. כנראה) בפלטפורמת גוגל סקריפט - במקום להחזיק שרת ולשלוח ממנו בקשות, נתתי לגוגל לעשות את זה במקומי &gt;&gt;&gt;" />
+    <meta property="og:url" content="https://chaim-chv.github.io/blog/site-monitoring/" />
+    <meta property="og:image" content="https://res-3.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/monitor.jpg" />
+    <meta property="article:published_time" content="2020-10-20T20:15:00.000Z" />
+    <meta property="article:modified_time" content="2020-12-21T00:05:56.000Z" />
+    <meta property="article:tag" content="google scripts" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Monitoring - ניטור פעילות באינטרנט" />
+    <meta name="twitter:description" content="הנה דוגמא קטנה לשימוש (לא ייעודי.. כנראה) בפלטפורמת גוגל סקריפט - במקום להחזיק שרת ולשלוח ממנו בקשות, נתתי לגוגל לעשות את זה במקומי &gt;&gt;&gt;" />
+    <meta name="twitter:url" content="https://chaim-chv.github.io/blog/site-monitoring/" />
+    <meta name="twitter:image" content="https://res-3.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/monitor.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="chv" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="google scripts" />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="1080" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "CHV&#x27;s blog",
+        "url": "https://chaim-chv.github.io/blog/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://chaim-chv.github.io/blog/content/images/size/w256h256/2022/02/portait-rounded-256x256px.png"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "chv",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s=250&r=x&d=mp",
+            "width": 250,
+            "height": 250
+        },
+        "url": "https://chaim-chv.github.io/blog/author/chv/",
+        "sameAs": []
+    },
+    "headline": "Monitoring - ניטור פעילות באינטרנט",
+    "url": "https://chaim-chv.github.io/blog/site-monitoring/",
+    "datePublished": "2020-10-20T20:15:00.000Z",
+    "dateModified": "2020-12-21T00:05:56.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://res-3.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/monitor.jpg",
+        "width": 1920,
+        "height": 1080
+    },
+    "keywords": "google scripts",
+    "description": "הנה דוגמא קטנה לשימוש (לא ייעודי.. כנראה) בפלטפורמת גוגל סקריפט - במקום להחזיק שרת ולשלוח ממנו בקשות, נתתי לגוגל לעשות את זה במקומי &gt;&gt;&gt;",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://chaim-chv.github.io/blog/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.18" />
+    <link rel="alternate" type="application/rss+xml" title="CHV&#x27;s blog" href="https://chaim-chv.github.io/blog/rss/" />
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.14/umd/portal.min.js" data-ghost="https://chaim-chv.github.io/blog/" data-key="ff6c3adb86a27871ef669442ae" data-api="https://chaim-chv.github.io/blog/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="ff6c3adb86a27871ef669442ae" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://chaim-chv.github.io/blog/" crossorigin="anonymous"></script>
+    <script defer src="/public/cards.min.js?v=ac34f1bcc3"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=ac34f1bcc3">
+    <script defer src="/public/member-attribution.min.js?v=ac34f1bcc3"></script>
+    <!-- self-hosted umami analytics - privacy focused -->
+<script async defer data-website-id="975eb99f-8334-434c-b6b5-e8aa9e6e1003" src="https://umami.chv.ovh/umami.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
+
+    <meta name="google-site-verification" content="idgrb37VmvOFTqk3oRpi-LGYR05-7VNsWgeoc3ODs3Y" />
+    
+    <script src="https://onesignal.chv.ovh/sdks/OneSignalSDK.js"></script>
+    <script>
+        window.OneSignal = window.OneSignal || [];
+            OneSignal.push(function () {
+                OneSignal.init({
+                    appId: "74c8b239-c6ab-4d8a-a54e-c0ba8fe5b57e",
+                    notifyButton: {
+                        enable: false,
+                    },
+                    welcomeNotification: {
+                        "title": "ברוך הבא",
+                        "message": "נרשמת בהצלחה"
+                    }
+                });
+            });
+    </script>
+
+</head>
+<body class="post-template tag-google-scripts">
+
+    <script>
+    function onManageWebPushSubscriptionButtonClicked(event) {
+        getSubscriptionState().then(function(state) {
+            if (state.isPushEnabled) {
+                /* Subscribed, opt them out */
+                OneSignal.setSubscription(false);
+            } else {
+                if (state.isOptedOut) {
+                    /* Opted out, opt them back in */
+                    OneSignal.setSubscription(true);
+                } else {
+                    /* Unsubscribed, subscribe them */
+                    OneSignal.registerForPushNotifications();
+                }
+            }
+        });
+    }
+
+    function updateMangeWebPushSubscriptionButton() {
+        var hideWhenSubscribed = false;
+        var subscribeText = "הירשם להתראות בדפדפן על פוסטים חדשים";
+        var unsubscribeText = "התנתק מההתראות";
+
+        getSubscriptionState().then(function(state) {
+            var buttonText = !state.isPushEnabled || state.isOptedOut ? subscribeText : unsubscribeText;
+
+            var top = document.querySelector(topbutton);
+            if (top === null) {
+                return;
+            }
+            var bottom = document.querySelector(bottombutton);
+            if (bottom === null) {
+                return;
+            }
+
+            top.textContent = buttonText;
+            bottom.textContent = buttonText;
+        });
+    }
+
+    function getSubscriptionState() {
+        return Promise.all([
+          OneSignal.isPushNotificationsEnabled(),
+          OneSignal.isOptedOut()
+        ]).then(function(result) {
+            var isPushEnabled = result[0];
+            var isOptedOut = result[1];
+
+            return {
+                isPushEnabled: isPushEnabled,
+                isOptedOut: isOptedOut
+            };
+        });
+    }
+
+    var OneSignal = OneSignal || [];
+    var topbutton = "#notify-top";
+    var bottombutton = "#notify-down"
+
+    /* This example assumes you've already initialized OneSignal */
+    OneSignal.push(function() {
+        // If we're on an unsupported browser, do nothing
+        if (!OneSignal.isPushNotificationsSupported()) {
+            return;
+        }
+        updateMangeWebPushSubscriptionButton(topbutton);
+        updateMangeWebPushSubscriptionButton(bottombutton);
+        OneSignal.on("subscriptionChange", function(isSubscribed) {
+            /* If the user's subscription state changes during the page's session, update the button text */
+            updateMangeWebPushSubscriptionButton(topbutton);
+            updateMangeWebPushSubscriptionButton(bottombutton);
+        });
+    });
+    updateMangeWebPushSubscriptionButton(topbutton);
+    updateMangeWebPushSubscriptionButton(bottombutton);
+
+    function track(description, type, url) { if (typeof umami !== "undefined") { umami.trackEvent(description, type, url || window.location.href ) } }
+    </script>
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header">
+    <div class="outer site-nav-main">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left-wrapper">
+        <div class="site-nav-left">
+                <a class="site-nav-logo" href="https://chaim-chv.github.io/blog">CHV&#x27;s blog</a>
+            <div class="site-nav-content">
+                    <ul class="nav">
+    <li class="nav-byt"><a href="https://chaim-chv.github.io/blog/">בית</a></li>
+    <li class="nav-tsvr-qshr"><a href="https://chaim-chv.github.io/blog/contact/">צור קשר</a></li>
+</ul>
+
+                    <span class="nav-post-title dash">Monitoring - ניטור פעילות באינטרנט</span>
+            </div>
+        </div>
+    </div>
+    <div class="site-nav-right">
+            <div class="social-links">
+            </div>
+
+            <div class="notif"><a href="#notify" onclick="onManageWebPushSubscriptionButtonClicked('click')" class="notify-button" id="notify-top">התראות דפדפן</a>
+            <span class="notify-button-tooltip">&zwnj; &zwnj; &zwnj; &zwnj; אפשר להירשם לעדכונים על ידי התראות דפדפן ('פושים' push) &zwnj; &zwnj; &zwnj; &zwnj;</span></div>
+            <a class="subscribe-button" href="#subscribe">עדכונים ב-<i class="fa fa-envelope" aria-hidden="true"></i> או <i class="fa fa-telegram" aria-hidden="true"></i></a>
+
+    </div>
+</nav>
+    </div>
+</div>    <link rel="stylesheet" type="text/css" href="/assets/built/scroll.css?v=ac34f1bcc3" />
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-google-scripts ">
+
+            <header class="post-full-header">
+
+                <section class="post-full-tags">
+                    <a href="/tag/google-scripts/">google scripts</a>
+                </section>
+
+                <h1 class="post-full-title">Monitoring - ניטור פעילות באינטרנט</h1>
+
+                <p class="post-full-custom-excerpt">הנה דוגמא קטנה לשימוש (לא ייעודי.. כנראה) בפלטפורמת גוגל סקריפט - במקום להחזיק שרת ולשלוח ממנו בקשות, נתתי לגוגל לעשות את זה במקומי &gt;&gt;&gt;</p>
+
+                <div class="post-full-byline">
+
+                    <section class="post-full-byline-content">
+
+                        <ul class="author-list">
+                            <li class="author-list-item">
+
+                                <div class="author-card">
+                                    <img class="author-profile-image" src="https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp" alt="chv" />
+                                    <div class="author-info">
+                                        <h2>chv</h2>
+                                        <p> קרא <a href="/author/chv/">עוד פוסטים</a> מהכותב הזה </p>
+                                    </div>
+                                </div>
+
+                                <a href="/author/chv/" class="author-avatar">
+                                    <img class="author-profile-image" src="https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp" alt="chv" />
+                                </a>
+
+                            </li>
+                        </ul>
+
+                        <section class="post-full-byline-meta">
+                            <h4 class="author-name"><a href="/author/chv/">chv</a></h4>
+                            <div class="byline-meta-content">
+                                <time class="byline-meta-date" datetime="2020-10-20">20 אוק׳ 2020</time>
+                                <span class="byline-reading-time"><span class="bull">&bull;</span> 1 min read</span>
+                            </div>
+                        </section>
+
+                    </section>
+
+
+                </div>
+            </header>
+
+            <figure class="post-full-image">
+                <img
+                    srcset="https://res-3.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/monitor.jpg 300w,
+                            https://res-3.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/monitor.jpg 600w,
+                            https://res-3.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/monitor.jpg 1000w,
+                            https://res-3.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/monitor.jpg 2000w"
+                    sizes="(max-width: 800px) 400px,
+                        (max-width: 1170px) 1170px,
+                            2000px"
+                    src="https://res-3.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/monitor.jpg"
+                    alt="Monitoring - ניטור פעילות באינטרנט"
+                />
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <p><strong>מוניטורינג</strong>: למי שלא מכיר - המושג הוא בעצם - איך לנטר ולהשגיח כל הזמן על פעילות אפליקציות הווב שלנו, כגון - אתרי אינטרנט, לבדוק שהם לא נפלו ואין שום תקלות כאלו ואחרות שמונעות מהיוזרים שלנו לקבל את מה שאנחנו רוצים שיקבלו.</p><p>ניקח את הבלוג הזה כדוגמא: הבלוג הזה, אם לא שמתם לב לפי כתובת הדומיין, רץ על הפלטפורמה החינמית ("הובי") של הֶרוֹקוּ (heroku - ראו <a href="https://www.heroku.com/pricing">כאן</a> את הפרטים על התוכנית החינמית). בפלטפורמה הזו, ברגע שלא נשלחת כל בקשה לאפליקציה במשך יותר מחמש דקות (לא בטוח שזה המספר, אבל משהו כזה) האפליקציה נכנסת לתרדמת.. עד שתישלח אליה בקשה, ואז היא מתעוררת - אבל התהליך של ההתעוררות לוקח כמובן זמן, מה שגורם שאם לדוגמא ירצה מישהו להיכנס לאתר הזה כשהוא כבוי, הוא ייכנס לקישור, יחכה עשר-עשרים שניות ואז זה יעבוד.</p><p>כמובן שזה לא לעניין, וכל מי שמחזיק אפליקציה בהרוקו מחפש איך לפתור את הבעיה. הנ"ל כולל אלפי (או עשרות אלפי) בוטים של טלגרם שרצים על הרוקו, זו הפלטפורמה הכי פופולרית לכאורה לבוטים כאלו, או בוטים של דיסקורד ושל גוגל צ'אט.</p><p>יש כמה כלים ותוספות שניתן להצמיד דרך הרוקו עצמם, שאמורים לשמור על האפליקציה ערה, אבל בפועל זה לא קורה.</p><p>תכלס, הפיתרון הוא לשלוח בקשה לאפליקציה כל חמש דקות. מה ששומר עליה ערה כל הזמן. הבעיה היא שכדי לעשות כזה דבר, צריך להשאיר את המחשב דלוק כל הזמן... מה שלא אפשרי לאנשים רבים. ואם לא המחשב האישי - צריך שרת בשביל זה. אם יש לך שרת כבר יירד לך הצורך בשימוש בהרוקו...</p><p>יש כמה מקומות שנותנים שירותים בדיוק בשביל זה, אפשר למנות כאן את האתר <a href="https://cron-job.org/en/">cron-job</a> (כשמו כן הוא..) שנותן להגדיר כתובת, ושולח אליה בקשות לפי ההגדרה שמכניסים לו (יש שם המון וריאציות להגדרה). האתר הזה נחמד, הבעיה שלפעמים הוא צובר עומס של לוגים ומסרב להמשיך לבצע את הבקשות. אם אין לוגים, יירד מאוד הענין בבקשות.</p><h2 id="-"><strong>שימוש בגוגל סקריפט:</strong></h2><p>כיוון שהתחלתי להתעסק קצת עם הרוקו (האתר הזה, ועוד כמה דברים) גיליתי את הצורך במוניטורינג, וחשבתי לעשות את זה דרך גוגל סקריפט.</p><p>בגוגל סקריפט אפשר לשלוח בקשות לכתובות, אפשר לשלוח בקשות POST או GET, כדי לקבל או להעלות קבצים ובערך כל האפשרויות הרגילות של <a href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API">fetch</a>. אפשר כמובן להתנהל עם כל פרטי התשובה (response) ולנתח אותם.</p><p>הכנתי לי סקריפט ששולח בקשות לאפליקציות שלי (כאן בקוד לדוגמא - שתי אפליקציות) בהרוקו, מקבל את התגובה ובודק את סטטוס ה-HTTP של התגובה. במקרה והוא 200 - הסקריפט משאיר לוג שהכל בסדר, אם זה משהו אחר מ-200, מה שאומר שצריך להתחיל לדאוג, כי האפליקציה כנראה לא עובדת מתקלה כלשהי, זה שולח לי מייל להתריע לי על הבעיה. הנה הקוד:</p><pre><code class="language-javascript">function fetch() {
+  var blogcall = UrlFetchApp.fetch('blog-url', {
+    validateHttpsCertificates: false,
+    followRedirects: true,
+    muteHttpExceptions: true,
+  });
+  var wikicall = UrlFetchApp.fetch('wiki-url', {
+    validateHttpsCertificates: false,
+    followRedirects: true,
+    muteHttpExceptions: true,
+  });
+  var blogres = blogcall.getResponseCode();
+  var wikires = wikicall.getResponseCode();
+  if ((blogres !== 200) | (wikires !== 200)) {
+    var body = `the response of google apps scripts request was: blog - ${blogres}, wiki - ${wikires}. check the status quickly!`;
+    var subject = 'something wrong in heroku apps';
+    GmailApp.sendEmail('me@gmail.com', subject, body);
+    Logger.log('something failed. email send succesfuly');
+  } else {
+    Logger.log(`blog is ${blogres}, wiki is ${wikires}.`);
+  }
+}</code></pre><p>הפקודה של fetch בגוגל סקריפט קצת שונה, צריך קודם להסביר לגוגל סקריפט שמדובר באפליקציית גוגל שאחראית על ה-fetch'ים - UrlFetchApp. לאחר מכן כמובן ה-URL (כאן בדוגמא אין כלום) ופרמטרים שימנעו תקלות לא רצויות בתגובה.<br>כדי לעשות לעצמי יותר קל, הכנסתי את הפקודות של הסטטוס בתגובה - לתוך משתנים - שורות 12 ו-13.<br>לאחר מכן הסקריפט בודק - אם אחת מהתשובות היתה <strong>לא תואמת</strong> ל-200, נשלח אליי אימייל (GmailApp.sendEmail, הפרמטרים מוכנסים מראש במשתנים ואז פשוט מכניסים את שם המשתנה במקום לכתוב באריכות) עם התקלה.<br>אם הכל עבר בסדר (else) - מבוצע לוגינג - עם הסטטוסים של התגובות.</p><p>הגדרתי טריגר שיריץ את הסקריפט בכל חמש דקות, וזה עובד מעולה... אם ניגשתם לאתר הזה בתוך שניה-שניה וחצי - זה בגללו.</p><p>אז מה 'למדנו' כאן? דבר ראשון fetch בגוגל סקריפט. וגם נגיעה קטנה ב-Gmail בגוגל סקריפט. קישורים לדוקו להלן 👇</p><hr><p>אם הייתם צריכים לכתוב את הקוד הזה מאפס, לדוגמא, הייתם צריכים ללמוד את התיעוד של הפונקציות הבאות:</p><ul><li><a href="https://developers.google.com/apps-script/reference/url-fetch/url-fetch-app">UrlFetchApp.fetch</a> - וגם לקבל את הסטטוס עם ()getResponseCode.</li><li><a href="https://developers.google.com/apps-script/reference/gmail/gmail-app#sendemailrecipient,-subject,-body,-options">GmailApp.sendEmail</a></li></ul>
+                    <hr class="tg-delete">
+                    <p class="tg-delete">
+                        <strong>אם יש לכם איזו שאלה ❔✨ או כל תגובה 💬, הארה 💡 והערה ❕ שהיא על הפוסט - אשמח מאוד! אם תכתבו אותה בהערות כאן למטה</strong>
+                        <br>
+                        פשוט להתחבר עם חשבון גיטהב ולהגיב 🎉
+                    </p>
+                    
+                </div>
+
+                <script src="https://utteranc.es/client.js" 
+                  repo="chaim-chv/blog-comments" 
+                  issue-term="og:title" 
+                  label="✨💬✨comment"
+                  theme="github-dark" 
+                  crossorigin="anonymous" async>
+                </script>
+
+            </section>
+
+
+            <section class="subscribe-form">
+
+    <h3 class="subscribe-form-title" style="border-bottom: 3px solid green;">הירשם ל-CHV&#x27;s blog</h3>
+    <p class="subscribe-form-description">
+        <strong style="color: whitesmoke;">🔔 התראות דפדפן 🔔</strong>
+        <br>
+        אפשר לקבל התראות פוש מהאתר על כל פוסט חדש!
+        <br>
+        לחץ על הכפתור למעלה או בתחתית העמוד כדי להתחבר
+        </p>
+        <br><div style="border-top: 3px solid green"></div><br>
+        <p class="subscribe-form-description">
+        הרשמה לעדכונים במייל על פוסטים חדשים:
+        <input style="margin: 10px 0 10px 0;" type="email" class="subscribe-email" id="mailform-down-email" placeholder="myemail@gmail.com" autocomplete="on">
+        <input style="margin: 10px 0 10px 0;" type="name" class="subscribe-email" id="mailform-down-name" placeholder="שם (למען הסדר הטוב)" autocomplete="on">
+        <button class="button primary" type="button" onclick="subscribe()">
+            <span class="button-content">הרשמה</span>
+            <span class="button-loader">
+                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                    y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                    <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                    <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                C22.32,8.481,24.301,9.057,26.013,10.047z">
+                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20"
+                            dur="0.5s" repeatCount="indefinite" />
+                    </path>
+                </svg>
+            </span>
+        </button><br>
+        <span id="sub-results"></span>
+        </p><br><div style="border-top: 3px solid green"></div><br>
+        <p class="subscribe-form-description">
+        או שתירשמו ל<strong>ערוץ הטלגרם</strong> שגם בו אני אעלה בעז"ה הודעה בכל פוסט חדש כאן<br>
+        <strong><a href="https://t.me/chvsblog" target="_blank">לחצו כאן כדי לעבור לערוץ בטלגרם</a></strong>
+    </p>
+
+    <script src="/assets/built/subscribe.js?v=ac34f1bcc3"></script>
+
+</section>
+
+        </article>
+
+    </div>
+</main>
+								
+	<div class="progress-wrap">
+		<svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+			<path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+		</svg>
+	</div>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card">
+                    <header class="read-next-card-header">
+                        <h3><span>עוד ב-</span><a href="/tag/google-scripts/">google scripts</a></h3>
+                    </header>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li>
+                                <h4><a href="/ghost-webhook-to-newsletter/">אפליקציית NodeJS לאוטומציה של העדכונים בבלוג</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2021-03-07">7 מרץ 2021</time> –
+                                        2 min read</p>
+                                </div>
+                            </li>
+                            <li>
+                                <h4><a href="/gas-bulk-messaging/">שליחת מייל לרשימת תפוצה (bulk messaging) בקלות עם גוגל סקריפט</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2021-03-07">7 מרץ 2021</time> –
+                                        1 min read</p>
+                                </div>
+                            </li>
+                            <li>
+                                <h4><a href="/mailing-list-gas/">רשימת תפוצה מגוגל סקריפט - לאנשי קשר של גוגל</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p><time datetime="2021-02-09">9 פבר׳ 2021</time> –
+                                        2 min read</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="/tag/google-scripts/">ראה את כל 5 הפוסטים
+                            →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-google-scripts tag-github ">
+
+    <a class="post-card-image-link" href="/github-actions-deploy/">
+        <img class="post-card-image"
+            srcset="https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/github-actions.jpg 300w,
+                    https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/github-actions.jpg 600w,
+                    https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/github-actions.jpg 1000w,
+                    https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/github-actions.jpg 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            loading="lazy"
+            src="https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/github-actions.jpg"
+            alt="הפעלה ידנית של Github actions מתוך גוגל סקריפט"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/github-actions-deploy/">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">google scripts</div>
+                <h2 class="post-card-title">הפעלה ידנית של Github actions מתוך גוגל סקריפט</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>כהמשך לפוסט על ניטור פעילות אתרים באמצעות Google scripts, הרחבה לשילוב עם פלטפורמה נוספת לצורך תיקון תקלות אוטומטי >>></p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        chv
+                    </div>
+            
+                    <a href="/author/chv/" class="static-avatar">
+                        <img class="author-profile-image" src="https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp" alt="chv" />
+                    </a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="/author/chv/">chv</a></span>
+                <span class="post-card-byline-date"><time datetime="2020-11-03">3 נוב׳ 2020</time> <span class="bull">&bull;</span> דקות קריאה 2</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+
+                <article class="post-card post tag-google-scripts ">
+
+    <a class="post-card-image-link" href="/google-scripts/">
+        <img class="post-card-image"
+            srcset="https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/google.png 300w,
+                    https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/google.png 600w,
+                    https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/google.png 1000w,
+                    https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/google.png 2000w"
+            sizes="(max-width: 1000px) 400px, 700px"
+            loading="lazy"
+            src="https://res-2.cloudinary.com/hxitlswav/image/upload/q_auto/v1/ghost-blog-images/google.png"
+            alt="גוגל סקריפט - היכרות"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/google-scripts/">
+
+            <header class="post-card-header">
+                    <div class="post-card-primary-tag">google scripts</div>
+                <h2 class="post-card-title">גוגל סקריפט - היכרות</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                    <p>google apps scripts - מערכת אוטומציה עם פוטנציאל עצום כמעט לכל אחד. הנה פוסט בסיסי להיכרות עם הפלטפורמה, כמה מושגים בתור התחלה >>></p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+            
+                    <div class="author-name-tooltip">
+                        chv
+                    </div>
+            
+                    <a href="/author/chv/" class="static-avatar">
+                        <img class="author-profile-image" src="https://www.gravatar.com/avatar/df01aec34c54df6fff2e1a61febee17d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp" alt="chv" />
+                    </a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="/author/chv/">chv</a></span>
+                <span class="post-card-byline-date"><time datetime="2020-10-11">11 אוק׳ 2020</time> <span class="bull">&bull;</span> דקה אחת קריאה</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://chaim-chv.github.io/blog">CHV&#x27;s blog</a> &copy; 2022</section>
+                <nav class="site-footer-nav">
+                    <a href="https://chaim-chv.github.io/blog">פוסטים אחרונים</a>
+                    
+                    <a href="#notify" onclick="onManageWebPushSubscriptionButtonClicked('click')" id="notify-down">התראות דפדפן</a>
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="subscribe" class="subscribe-overlay">
+        <a class="subscribe-close-overlay" href="#"></a>
+        <a class="subscribe-close-button" href="#"></a>
+        <div class="subscribe-overlay-content">
+            <div class="subscribe-form">
+                <h1 class="subscribe-overlay-title">הירשם ל-CHV&#x27;s blog</h1>
+                <p class="subscribe-overlay-description">
+        הרשמה לעדכונים במייל על פוסטים חדשים:
+        <input style="margin: 10px 0 10px 0;" type="email" class="subscribe-email subscribe-up-email" id="mailform-up-email" placeholder="myemail@gmail.com" autocomplete="on">
+        <input style="margin: 10px 0 10px 0;" type="name" class="subscribe-email subscribe-up-email" id="mailform-up-name" placeholder="שם (למען הסדר הטוב)" autocomplete="on">
+        <button class="button primary" type="button" onclick="subscribeup()">
+            <span class="button-content">הרשמה</span>
+            <span class="button-loader-up">
+                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                    y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                    <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                    <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                C22.32,8.481,24.301,9.057,26.013,10.047z">
+                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20"
+                            dur="0.5s" repeatCount="indefinite" />
+                    </path>
+                </svg>
+            </span>
+        </button><br>
+        <span id="sub-results-up"></span><br>
+        <br>או שתירשמו ל<strong>ערוץ הטלגרם</strong> שגם בו אני אעלה בעז"ה הודעה בכל פוסט חדש כאן<br><strong><a href="https://t.me/chvsblog" target="_blank">לחצו כאן כדי לעבור לערוץ בטלגרם</a></strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/built/subscribe-overlay.js?v=ac34f1bcc3"></script>
+
+    <script src="/assets/built/jquery+members+prism.js?v=ac34f1bcc3"></script>
+
+    <script src="/assets/built/casper.js?v=ac34f1bcc3"></script>
+
+        <script src="/assets/built/postscroll.js?v=ac34f1bcc3"></script>
+
+
+    <style>
+::selection {
+  color: black
+}
+</style>
+
+</body>
+</html>
