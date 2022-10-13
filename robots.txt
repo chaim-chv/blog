@@ -1,5 +1,5 @@
 User-agent: *
-Sitemap: https://chaim-chv.github.io/blog/sitemap.xml
+Sitemap: https://blog.chv.ovh/sitemap.xml
 Disallow: /ghost/
 Disallow: /p/
 Disallow: /email/
